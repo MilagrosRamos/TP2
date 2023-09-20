@@ -7,7 +7,16 @@ import numpy as np
 import cv2
 import os
 
-path = r"C:\Users\Mili\Desktop\tp2\training\messi\10.jpg"
+path = r"training/messi/10.jpg"
 
 img = image.load_img(path)
 plt.imshow(img)
+cv2.imread(path).shape
+
+train = ImageDataGenerator(rescale=1/255)
+validation = ImageDataGenerator(rescale=1/255)
+
+train_dataset = train.flow_from_directory('training/',
+                                          target_size=(200,200),
+                                          batch_size=3,
+                                          class_mode='binary')
